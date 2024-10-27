@@ -136,7 +136,7 @@ class BigQueryBatchJobSink(BaseBigQuerySink):
         )
         self.increment_jobs_enqueued()
         self.buffer = Compressor()
-        # raise NotFound(f"Table {self.table} not found.")
+        raise NotFound(f"Table {self.table} not found.")
 
 
 class BigQueryBatchJobDenormalizedSink(Denormalized, BigQueryBatchJobSink):
