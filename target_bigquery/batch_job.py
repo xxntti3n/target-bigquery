@@ -123,6 +123,7 @@ class BigQueryBatchJobSink(BaseBigQuerySink):
 
     def process_batch(self, context: Dict[str, Any]) -> None:
         self.buffer.close()
+        # raise NotFound(f"Table {self.table} not found.")
         self.global_queue.put(
             Job(
                 data=(
@@ -136,7 +137,7 @@ class BigQueryBatchJobSink(BaseBigQuerySink):
         )
         self.increment_jobs_enqueued()
         self.buffer = Compressor()
-        raise NotFound(f"Table {self.table} not found.")
+        # raise NotFound(f"Table {self.table} not found.")
 
 
 class BigQueryBatchJobDenormalizedSink(Denormalized, BigQueryBatchJobSink):
